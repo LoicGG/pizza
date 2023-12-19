@@ -32,7 +32,7 @@ const jouerManche = (e) => {
 
 const PIERRE = "pierre";
 const FEUILLE = "feuille";
-const CISEAUX = "ciseaux";
+const CISEAUX = "ciseaux"; 
 
 const faireChoixOrdinateur = () => {
     // 0 : pierre
