@@ -65,20 +65,20 @@ const verifierGagnant = (choixJoueur, choixOrdi) => {
             return victoireJoueur();
         }
     }
-    // if(choixJoueur == PIERRE) {
-    //     if(choixOrdi == FEUILLE) {
-    //         return victoireOrdinateur();
-    //     } else if (choixOrdi == CISEAUX) {
-    //         return victoireJoueur();
-    //     }
-    // }
-    // if(choixJoueur == PIERRE) {
-    //     if(choixOrdi == FEUILLE) {
-    //         return victoireOrdinateur();
-    //     } else if (choixOrdi == CISEAUX) {
-    //         return victoireJoueur();
-    //     }
-    // }
+    if(choixJoueur == FEUILLE) {
+        if(choixOrdi == CISEAUX) {
+            return victoireOrdinateur();
+        } else if (choixOrdi == PIERRE) {
+            return victoireJoueur();
+        }
+    }
+    if(choixJoueur == CISEAUX) {
+        if(choixOrdi == PIERRE) {
+            return victoireOrdinateur();
+        } else if (choixOrdi == FEUILLE) {
+            return victoireJoueur();
+        }
+    }
 };
 
 const victoireOrdinateur = () => {
@@ -88,7 +88,34 @@ const victoireOrdinateur = () => {
 
 const victoireJoueur = () => {
     message.textContent = "Vous avez gagné = :)"
-    scoreOrdinateur.textContent++;
+    scoreJoueur.textContent++;
 };
 
+const preparerNouvelleManche = () => {
+    btnJoueur.forEach((btn) => {
+        btn.classList.remove('desactivated');
+        btn.classList.remove('active');
+        btn.addEventListener("click", jouerManche);
+    });
+
+    nextBtn.style.visibility = "hidden";
+
+    opierreBtn.classList.remove('active');
+    ofeuilleBtn.classList.remove('active');
+    ociseauxBtn.classList.remove('active');
+
+    message.textContent = "A vous de jouer !";
+};
+
+
+nextBtn.addEventListener('click', preparerNouvelleManche);
+
 btnJoueur.forEach((btn) => btn.addEventListener('click', jouerManche));
+
+
+resetBtn.addEventListener('click', () => {
+    scoreJoueur.textContent = 0;
+    scoreOrdinateur.textContent = 0;
+
+    preparerNouvelleManche();
+});
