@@ -1,3 +1,5 @@
+// https://www.youtube.com/watch?v=uIMi5JZuS00
+
 let resetBtn = document.getElementById('reset');
 let scoreJoueur = document.getElementById('score-joueur');
 let scoreOrdinateur = document.getElementById('score-ordinateur');
