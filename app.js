@@ -8,4 +8,87 @@ let ociseauxBtn = document.getElementById('ociseaux');
 let message = document.getElementById('message');
 let nextBtn = document.getElementById('next');
 
-const jouerManche 
+const jouerManche = (e) => {
+    let choix = e.target.closest('.btn-joueur'); //.closest permet de séléctionner l'élément le plus proche
+    
+    btnJoueur.forEach((btn) => {
+        btn.classList.add('desactivated');
+        btn.removeEventListener("click", jouerManche);
+});
+
+    choix.classList.remove('desactivated');
+    choix.classList.add('active');
+
+    let choixJoueur = choix.id;
+
+    let choixOrdi = faireChoixOrdinateur();
+
+    verifierGagnant(choixJoueur, choixOrdi);
+
+    nextBtn.style.visibility = "visible";
+};
+
+const PIERRE = "pierre";
+const FEUILLE = "feuille";
+const CISEAUX = "ciseaux";
+
+const faireChoixOrdinateur = () => {
+    // 0 : pierre
+    // 1 : feuille
+    // 2 : ciseaux
+    
+    let nbAleatoire = Math.floor(Math.random() * 3);
+
+    switch(nbAleatoire) {
+        case 0:
+            opierreBtn.classList.add('active');
+            return PIERRE;
+        case 1:
+            ofeuilleBtn.classList.add('active');
+            return FEUILLE;
+        default:
+            ociseauxBtn.classList.add('active');
+            return CISEAUX;
+    }
+};
+
+const verifierGagnant = (choixJoueur, choixOrdi) => {
+    if(choixJoueur == choixOrdi) {
+        message.textContent = "Egalité !" ;
+        return;
+    }
+
+    if(choixJoueur == PIERRE) {
+        if(choixOrdi == FEUILLE) {
+            return victoireOrdinateur();
+        } else if (choixOrdi == CISEAUX) {
+            return victoireJoueur();
+        }
+    }
+    // if(choixJoueur == PIERRE) {
+    //     if(choixOrdi == FEUILLE) {
+    //         return victoireOrdinateur();
+    //     } else if (choixOrdi == CISEAUX) {
+    //         return victoireJoueur();
+    //     }
+    // }
+    // if(choixJoueur == PIERRE) {
+    //     if(choixOrdi == FEUILLE) {
+    //         return victoireOrdinateur();
+    //     } else if (choixOrdi == CISEAUX) {
+    //         return victoireJoueur();
+    //     }
+    // }
+};
+
+const victoireOrdinateur = () => {
+    message.textContent = " L'ordinateur Gagne...";
+    scoreOrdinateur.textContent++;
+};
+
+const victoireJoueur = () => {
+    message.textContent = "Vous avez gagné = :)"
+    scoreOrdinateur.textContent++;
+};
+
+btnJoueur.forEach((btn) => btn.addEventListener('click', jouerManche));
