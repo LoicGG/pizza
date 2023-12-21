@@ -1,5 +1,7 @@
 // https://www.youtube.com/watch?v=uIMi5JZuS00
 
+
+// déclaration de toutes les variables
 let resetBtn = document.getElementById('reset');
 let scoreJoueur = document.getElementById('score-joueur');
 let scoreOrdinateur = document.getElementById('score-ordinateur');
@@ -10,6 +12,8 @@ let ociseauxBtn = document.getElementById('ociseaux');
 let message = document.getElementById('message');
 let nextBtn = document.getElementById('next');
 
+
+//déclaration de la manche
 const jouerManche = (e) => {
     let choix = e.target.closest('.btn-joueur'); //.closest permet de séléctionner l'élément le plus proche
     
@@ -30,6 +34,8 @@ const jouerManche = (e) => {
     nextBtn.style.visibility = "visible";
 };
 
+
+// Déclaration du choix de l'ordinateur
 const PIERRE = "pierre";
 const FEUILLE = "feuille";
 const CISEAUX = "ciseaux"; 
